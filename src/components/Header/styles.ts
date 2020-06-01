@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface ContainerProps {
   size?: 'small' | 'large';
+  page: string;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -21,14 +22,27 @@ export const Container = styled.div<ContainerProps>`
         color: #fff;
         text-decoration: none;
         font-size: 16px;
-        transition: opacity 0.2s;
+        padding-bottom: 10px;
+
+        &:nth-child(1) {
+          border-bottom: 3px solid
+            ${({ page }) => (page === 'dashboard' ? '#ff872c' : 'transparent')};
+          opacity: ${({ page }) => (page === 'dashboard' ? '1' : '0.8')};
+        }
+
+        &:nth-child(2) {
+          border-bottom: 3px solid
+            ${({ page }) => (page === 'import' ? '#ff872c' : 'transparent')};
+          opacity: ${({ page }) => (page === 'import' ? '1' : '0.8')};
+        }
 
         & + a {
           margin-left: 32px;
         }
 
         &:hover {
-          opacity: 0.6;
+          border-bottom: 3px solid #ff872c;
+          opacity: 1;
         }
       }
     }
